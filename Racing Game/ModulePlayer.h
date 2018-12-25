@@ -31,7 +31,6 @@ public:
 public:
 
 	int level = 1;
-
 	PhysVehicle3D* car;
 	float turn = 0;
 	float acceleration = 0;
@@ -41,5 +40,4 @@ public:
 
 	mutable Timer timer;
 	float best_time = 100;
-	bool input = true;
 };

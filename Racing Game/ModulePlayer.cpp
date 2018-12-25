@@ -115,63 +115,40 @@ bool ModulePlayer::CleanUp()
 }
 
 btVector3 ModulePlayer::getPos() const
+{
+	return car->GetPos();
+}
+
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
-	turn = acceleration = brake = 0.0f;
 
-	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-	{
-		acceleration = MAX_ACCELERATION;
+		turn = acceleration = brake = 0.0f;
 
-		if (acceleration == MAX_ACCELERATION && SDL_GetTicks() > acceleration_fx_Time)//This function makes the acceleration_fx not sound repetitive
-		{
-			acceleration_fx_Time = SDL_GetTicks() + 450;
-		}
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {acceleration = MAX_ACCELERATION;}
 
-		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-		{
-			if (turn < TURN_DEGREES)
-				turn += TURN_DEGREES;
-		}
+		if (acceleration == MAX_ACCELERATION && SDL_GetTicks() > acceleration_fx_Time) { acceleration_fx_Time = SDL_GetTicks() + 450;}
 
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-		{
-			if (turn > -TURN_DEGREES)
-				turn -= TURN_DEGREES;
-		}
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {if (turn < TURN_DEGREES){turn += TURN_DEGREES;}}
 
-		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-		{
-			acceleration -= MAX_ACCELERATION / 2;
-		}
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) { if (turn > -TURN_DEGREES){ turn -= TURN_DEGREES; } }
+
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT){ acceleration -= MAX_ACCELERATION / 2; }
 
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
-			if (car->GetKmh() > 7.5f)
-			{
-				brake = BRAKE_POWER;
-			}
-			else
-				brake = BRAKE_POWER;
+			if (car->GetKmh() > 7.5f){brake = BRAKE_POWER;}
+			else {brake = BRAKE_POWER;}
 		}
-	}
-	else { // Once won, 
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
-		{
-			RespawnCar();
-		}
-	}
+
 	if (accelerator) {
 		acceleration += TURBO_ACCELERATION;
-
 		accelerator = false;
-
 	}
+
 	car->ApplyEngineForce(acceleration);
 	car->Turn(turn);
 	car->Brake(brake);
-
 	car->Render();
 
 	char title[80];
@@ -189,7 +166,6 @@ void ModulePlayer::RespawnCar() {
 	car->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
 	timer.Start();
 	App->camera->free_camera = false;
-	input = true;
 }
 
 
