@@ -4,7 +4,9 @@
 
 // =================================================
 PhysBody3D::PhysBody3D(btRigidBody* body) : body(body)
-{}
+{
+	body->setUserPointer(this);
+}
 
 // ---------------------------------------------------------
 PhysBody3D::~PhysBody3D()
@@ -44,4 +46,30 @@ void PhysBody3D::SetPos(float x, float y, float z)
 	btTransform t = body->getWorldTransform();
 	t.setOrigin(btVector3(x, y, z));
 	body->setWorldTransform(t);
+}
+
+btVector3 PhysBody3D::GetPos() const
+{
+	btTransform position = body->getWorldTransform();
+	return position.getOrigin();
+}
+
+void PhysBody3D::CreateSensor() const
+{
+	body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+
+}
+
+void PhysBody3D::SetRotation(btQuaternion rotation) const {
+
+	btTransform t = body->getWorldTransform();
+	t.setRotation(rotation);
+	body->setWorldTransform(t);
+
+}
+
+btQuaternion PhysBody3D::GetRotation() const {
+
+	btTransform rotation = body->getWorldTransform();
+	return rotation.getRotation();
 }

@@ -21,12 +21,17 @@ public:
 private:
 
 	void CalculateViewMatrix();
+	bool debug = false;
 
 public:
+
+	bool free_camera = false;
 	
 	vec3 X, Y, Z, Position, Reference;
 
+
 private:
+	vec3 offset_to_player;
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;
 };

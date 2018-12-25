@@ -5,9 +5,25 @@
 #include "Primitive.h"
 
 #define MAX_SNAKE 2
+#define ROAD_HEIGHT 0.1f
+
 
 struct PhysBody3D;
 struct PhysMotor3D;
+
+struct Obstacle {
+
+	Obstacle() {}
+	Obstacle(Cube c, Cube c2, PhysBody3D* bc, PhysBody3D* bc2) : cube(c), cube2(c2), body_cube(bc), body_cube2(bc2) {}
+
+	Cube cube;
+	Cube cube2;
+
+	PhysBody3D* body_cube = nullptr;
+	PhysBody3D* body_cube2 = nullptr;
+
+};
+
 
 class ModuleSceneIntro : public Module
 {
@@ -19,18 +35,10 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
+	void CreateMap();
 
 public:
-	/*
-	PhysBody3D* pb_snake[MAX_SNAKE];
-	Sphere s_snake[MAX_SNAKE];
-
-	PhysBody3D* pb_snake2[MAX_SNAKE];
-	Sphere s_snake2[MAX_SNAKE];
-	*/
-
-	PhysBody3D* pb_chassis;
+	PhysBody3D * pb_chassis;
 	Cube p_chassis;
 
 	PhysBody3D* pb_wheel;
@@ -41,4 +49,5 @@ public:
 
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
+
 };
