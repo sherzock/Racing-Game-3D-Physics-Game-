@@ -49,15 +49,15 @@ void ModuleSceneIntro::CreateMap()
 	//level 1
 	App->props->CreateEndLine(10, ROAD_HEIGHT+0.01, 40, 4.99, 10, 85);
 	App->props->CreateCollisionMaterial(500, ROAD_HEIGHT, 40, 250, 10, 85);
-	App->props->CreateCollisionMaterial(20, 20, 30, 50, 20, 90, Red);
-	App->props->CreateCollisionMaterial(20, 20, 30, 100, 20, 80, Red);
-	App->props->CreateCollisionMaterial(20, 20, 30, 150, 20, 90, Red);
-	App->props->CreateCollisionMaterial(20, 20, 30, 200, 20, 90, Red);
-	App->props->CreateCollisionMaterial(20, 20, 30, 250, 20, 80, Red);
-	App->props->CreateCollisionMaterial(20, 20, 30, 300, 20, 80, Red);
-	App->props->CreateCollisionMaterial(20, 20, 30, 350, 20, 90, Red);
-	App->props->CreateCollisionMaterial(20, 20, 30, 400, 20, 80, Red);
-	App->props->CreateCollisionMaterial(20, 20, 30, 450, 20, 90, Red);
+	App->props->CreateCollisionMaterialKill(20, 20, 30, 50, 20, 90, Red);
+	App->props->CreateCollisionMaterialKill(20, 20, 30, 100, 20, 80, Red);
+	App->props->CreateCollisionMaterialKill(20, 20, 30, 150, 20, 90, Red);
+	App->props->CreateCollisionMaterialKill(20, 20, 30, 200, 20, 90, Red);
+	App->props->CreateCollisionMaterialKill(20, 20, 30, 250, 20, 80, Red);
+	App->props->CreateCollisionMaterialKill(20, 20, 30, 300, 20, 80, Red);
+	App->props->CreateCollisionMaterialKill(20, 20, 30, 350, 20, 90, Red);
+	App->props->CreateCollisionMaterialKill(20, 20, 30, 400, 20, 80, Red);
+	App->props->CreateCollisionMaterialKill(20, 20, 30, 450, 20, 90, Red);
 	App->props->CreateEnd(0.3f, 20, 40, 490, 10, 85);
 	App->props->CreateEndLine(10, ROAD_HEIGHT + 0.01, 40, 499, 10, 85);
 

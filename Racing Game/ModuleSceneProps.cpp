@@ -50,6 +50,20 @@ void ModuleSceneProps::CreateCollisionMaterial(float width, float height, float 
 	App->physics->AddBody(aux, 0);
 }
 
+void ModuleSceneProps::CreateCollisionMaterialKill(float width, float height, float large, float x, float y, float z, Color color)
+{
+	Cube aux(width, height, large);
+	aux.SetPos(x, y, z);
+	aux.color = color;
+	Cubes.add(aux);
+	App->physics->AddBody(aux, 0);
+
+	PhysBody3D* auxbody = App->physics->AddBody(aux, 0, typeofsensor::Killzone);
+
+	auxbody->CreateSensor();
+	auxbody->collision_listeners.add(this);
+}
+
 void ModuleSceneProps::CreateEndLine(float width, float height, float large, float x, float y, float z)
 {
 	

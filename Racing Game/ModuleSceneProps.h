@@ -13,6 +13,7 @@ public:
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 	
 	void CreateCollisionMaterial(float width, float height, float large, float x, float y, float z, Color color = Grey);
+	void CreateCollisionMaterialKill(float width, float height, float large, float x, float y, float z, Color color = Grey);
 	void CreateEndLine(float width, float height, float large, float x, float y, float z);
 	void CreateAccelerator(float width, float height, float large, float x, float y, float z, Color color = Blue);
 	void CreateJump(float width, float height, float large, float x, float y, float z, float degree, vec3 axis, Color color = Grey);
