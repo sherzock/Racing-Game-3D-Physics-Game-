@@ -4,10 +4,6 @@
 #include "Globals.h"
 #include "Primitive.h"
 
-#define MAX_SNAKE 2
-#define ROAD_HEIGHT 0.1f
-
-
 struct PhysBody3D;
 struct PhysMotor3D;
 

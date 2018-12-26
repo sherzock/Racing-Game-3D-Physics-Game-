@@ -6,13 +6,6 @@
 
 struct PhysVehicle3D;
 
-#define MAX_ACCELERATION 1000.0f
-#define TURBO_ACCELERATION 8000.0f
-#define TURN_DEGREES 15.0f * DEGTORAD
-#define BRAKE_POWER 75.0f
-
-
-
 class ModulePlayer : public Module
 {
 public:
@@ -30,7 +23,10 @@ public:
 
 public:
 
-	int level = 4;
+	uint lostfx = 0;
+	uint wonfx = 0;
+	uint carfx = 0;
+	int level = 1;
 	PhysVehicle3D* car;
 	float turn = 0;
 	float acceleration = 0;

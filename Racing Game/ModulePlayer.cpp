@@ -101,6 +101,11 @@ bool ModulePlayer::Start()
 	car = App->physics->AddVehicle(infocar);
 	PositionCar();
 
+	lostfx = App->audio->LoadFx("sound/lost.wav");
+	wonfx = App->audio->LoadFx("sound/won.wav");
+	carfx = App->audio->LoadFx("sound/loop_0.wav");
+
+
 	timer.Start();
 
 	return true;
@@ -125,24 +130,46 @@ update_status ModulePlayer::Update(float dt)
 
 		turn = acceleration = brake = 0.0f;
 
-		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {acceleration = MAX_ACCELERATION;}
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {acceleration = 1000.0f;}
 
-		if (acceleration == MAX_ACCELERATION && SDL_GetTicks() > acceleration_fx_Time) { acceleration_fx_Time = SDL_GetTicks() + 450;}
+		if (acceleration == 1000.0f && SDL_GetTicks() > acceleration_fx_Time) { 
+			
+			App->audio->PlayFx(carfx);
+			acceleration_fx_Time = SDL_GetTicks() + 450;
+		
+		}
 
-		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {if (turn < TURN_DEGREES){turn += TURN_DEGREES;}}
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {if (turn < 15.0f * DEGTORAD){turn += 15.0f * DEGTORAD;}}
 
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) { if (turn > -TURN_DEGREES){ turn -= TURN_DEGREES; } }
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) { if (turn > -15.0f * DEGTORAD){ turn -= 15.0f * DEGTORAD; } }
 
-		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT){ acceleration -= MAX_ACCELERATION / 2; }
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT){ acceleration -= 1000.0f / 2; }
 
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
-			if (car->GetKmh() > 7.5f){brake = BRAKE_POWER;}
-			else {brake = BRAKE_POWER;}
+			if (car->GetKmh() > 7.5f){brake = 75.0f;}
+			else {brake = 75.0f;}
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
+			level = 1;
+			RespawnCar();
+		}
+		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
+			level = 2;
+			RespawnCar();
+		}
+		if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
+			level = 3;
+			RespawnCar();
+		}
+		if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN) {
+			level = 4;
+			RespawnCar();
 		}
 
 	if (accelerator) {
-		acceleration += TURBO_ACCELERATION;
+		acceleration += 8000.0f;
 		accelerator = false;
 	}
 
@@ -151,18 +178,18 @@ update_status ModulePlayer::Update(float dt)
 	car->Brake(brake);
 	car->Render();
 
-	if (timer.ReadSec() > 35) {
+	if (timer.ReadSec() > 25) {
 		RespawnCar();
 	}
 
 	char title[80];
-	sprintf_s(title, "%.1f Km/h    %.1f sec   %i Deaths", car->GetKmh(), timer.ReadSec(), Deaths);
+	sprintf_s(title, "%.1f Km/h    %.1f sec   %i Deaths   level %i", car->GetKmh(), timer.ReadSec(), Deaths, level);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
 }
 
-void ModulePlayer::Crash() { RespawnCar(); }
+void ModulePlayer::Crash() { RespawnCar(); App->audio->PlayFx(lostfx); }
 void ModulePlayer::RespawnCar() {
 	Deaths++;
 	PositionCar();

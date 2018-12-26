@@ -9,6 +9,7 @@ public:
 	ModuleSceneProps(Application* app, bool start_enabled = true);
 	~ModuleSceneProps();
 
+	bool Start();
 	update_status Update(float dt);
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 	
@@ -22,7 +23,6 @@ public:
 	void CreateObstacle(float x, float y, float z, Color color = Red);
 
 public:
-
 	p2List<Cube> Cubes;
 	p2List<Obstacle> KillRotationThings;
 };

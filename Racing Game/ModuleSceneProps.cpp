@@ -9,6 +9,12 @@
 ModuleSceneProps::ModuleSceneProps(Application* app, bool start_enabled) : Module(app, start_enabled) {}
 ModuleSceneProps::~ModuleSceneProps(){}
 
+bool ModuleSceneProps::Start() {
+
+	return true;
+
+}
+
 update_status ModuleSceneProps::Update(float dt)
 {
 
@@ -36,8 +42,8 @@ update_status ModuleSceneProps::Update(float dt)
 void ModuleSceneProps::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 	if (body1->type == accelerate){App->player->accelerator = true;}
-	else if (body1->type == Killzone){App->player->RespawnCar();}
-	else if (body1->type == EndofLevel){ App->player->level++; App->player->RespawnCar();}
+	else if (body1->type == Killzone){App->player->Crash();}
+	else if (body1->type == EndofLevel) { App->player->level++; App->player->RespawnCar(); App->audio->PlayFx(App->player->wonfx); }
 	else if (body1->type == Obstaclesens){App->player->Crash();}
 }
 
