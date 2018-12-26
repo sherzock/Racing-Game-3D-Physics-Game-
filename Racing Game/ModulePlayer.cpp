@@ -151,7 +151,7 @@ update_status ModulePlayer::Update(float dt)
 	car->Brake(brake);
 	car->Render();
 
-	if (timer.ReadSec() > 25) {
+	if (timer.ReadSec() > 35) {
 		RespawnCar();
 	}
 
@@ -173,7 +173,7 @@ void ModulePlayer::RespawnCar() {
 }
 
 
-void ModulePlayer::PositionCar() const {
+void ModulePlayer::PositionCar() {
 	if (level == 1) {
 		car->SetRotation({ 0,1,0,1 });
 		car->SetPos(5, 10.1f, 85);
@@ -185,6 +185,17 @@ void ModulePlayer::PositionCar() const {
 	else if (level == 3) {
 		car->SetRotation({ 0,1,0,1 });
 		car->SetPos(5, 10.1f, 285);
+	}
+	else if (level == 4) {
+		car->SetRotation({ 0,1,0,1 });
+		car->SetPos(5, 10.1f, 385);
+	}
+	else if (level == 5) {
+		car->SetRotation({ 0,1,0,1 });
+		car->SetPos(5, 10.1f, 85);
+		Deaths = 0;
+		level = 1;
+		
 	}
 }
 

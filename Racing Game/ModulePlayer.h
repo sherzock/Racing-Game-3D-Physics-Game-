@@ -24,13 +24,13 @@ public:
 	bool CleanUp();
 	btVector3 getPos() const;
 
-	void PositionCar() const;
+	void PositionCar();
 	void RespawnCar();
 	void Crash();
 
 public:
 
-	int level = 3;
+	int level = 4;
 	PhysVehicle3D* car;
 	float turn = 0;
 	float acceleration = 0;

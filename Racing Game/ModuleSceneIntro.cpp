@@ -108,5 +108,36 @@ void ModuleSceneIntro::CreateMap()
 	App->props->CreateCollisionMaterialKill(4, 4, 4, 170, 12, 313, Red);
 	App->props->CreateCollisionMaterialKill(4, 4, 4, 195, 12, 317, Red);
 	App->props->CreateCollisionMaterialKill(4, 4, 4, 220, 12, 315, Red);
+
+	//level 4
+	App->props->CreateEndLine(10, ROAD_HEIGHT + 0.01, 4, 4.99, 10, 385);
+	App->props->CreateCollisionMaterial(50, ROAD_HEIGHT, 4, 25, 10, 385);
+	App->props->CreateCollisionMaterialKill(50, 3, 4, 25, 11.5, 381, Red);
+	App->props->CreateCollisionMaterialKill(50, 3, 4, 25, 11.5, 389, Red);
+	App->props->CreateCollisionMaterial(15, ROAD_HEIGHT, 50, 57.5, 10, 385);
+
+	App->props->CreateCollisionMaterial(250, ROAD_HEIGHT, 4, 175, 10, 358);
+	App->props->CreateCollisionMaterial(250, ROAD_HEIGHT, 4, 175, 10, 412);
+
+	App->props->CreateJump(100, ROAD_HEIGHT, 60, 330, 18, 385, 10, { 0,0,1 });
+	App->props->CreateCollisionMaterial(220, ROAD_HEIGHT, 4, 175, 10, 385);
+	App->props->CreateObstacle(100, 17, 385);
+	App->props->CreateObstacle(150, 17, 385);
+	App->props->CreateObstacle(175, 17, 385);
+	App->props->CreateObstacle(125, 17, 385);
+	App->props->CreateObstacle(75, 17, 385);
+	App->props->CreateObstacle(200, 17, 385);
+	App->props->CreateObstacle(250, 17, 385);
+	App->props->CreateObstacle(275, 17, 385);
+	App->props->CreateObstacle(225, 17, 385);
+
+	App->props->CreateObstacle(150, 17, 358);
+	App->props->CreateObstacle(250, 17, 358);
+
+	App->props->CreateObstacle(150, 17, 412);
+	App->props->CreateObstacle(250, 17, 412);
+
+	App->props->CreateEnd(1, 20, 60, 370, 36, 385);
+	App->props->CreateEndLine(1, 20, 60, 370, 36, 385);
 }
 
