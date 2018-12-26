@@ -151,12 +151,12 @@ update_status ModulePlayer::Update(float dt)
 	car->Brake(brake);
 	car->Render();
 
-	if (timer.ReadSec() > 25) {
+	/*if (timer.ReadSec() > 25) {
 		RespawnCar();
-	}
+	}*/
 
 	char title[80];
-	sprintf_s(title, "%.1f Km/h    %.1f sec      Best Time %.1f sec", car->GetKmh(), timer.ReadSec(), best_time);
+	sprintf_s(title, "%.1f Km/h    %.1f sec     Number of Deaths %i ", car->GetKmh(), timer.ReadSec(), Deaths);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
@@ -164,6 +164,7 @@ update_status ModulePlayer::Update(float dt)
 
 void ModulePlayer::Crash() { RespawnCar(); }
 void ModulePlayer::RespawnCar() {
+	Deaths++;
 	PositionCar();
 	car->SetRotation({ 0,1,0,1 });
 	car->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });

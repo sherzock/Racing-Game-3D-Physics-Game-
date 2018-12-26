@@ -39,5 +39,5 @@ public:
 	bool accelerator = false;
 
 	mutable Timer timer;
-	float best_time = 100;
+	int Deaths = 0;
 };
