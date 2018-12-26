@@ -30,7 +30,7 @@ public:
 
 public:
 
-	int level = 1;
+	int level = 3;
 	PhysVehicle3D* car;
 	float turn = 0;
 	float acceleration = 0;
