@@ -80,10 +80,12 @@ void ModuleSceneIntro::CreateMap()
 	App->props->CreateAccelerator(5, ROAD_HEIGHT, 5, 150, 17.01, 200);
 	App->props->CreateAccelerator(5, ROAD_HEIGHT, 5, 200, 17.01, 200);
 	App->props->CreateJump(10, ROAD_HEIGHT, 5, 273, 19, 200, 20, { 0,0,1 });
+	App->props->CreateObstacle(125, 23, 200);
+	App->props->CreateObstacle(175, 23, 200);
+	App->props->CreateObstacle(225, 23, 200);
 	App->props->CreateEnd(1, 40, 20, 340, 19, 200);
 	App->props->CreateEndLine(1, 40, 20, 340, 19, 200);
 
-	//App->props->CreateObstacle(75, 23, -45);
-	//App->props->CreateObstacle(75, 23, -30);
+	
 }
 

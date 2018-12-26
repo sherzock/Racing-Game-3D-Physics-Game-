@@ -126,7 +126,7 @@ void ModuleSceneProps::CreateObstacle(float x, float y, float z, Color color) {
 	
 	
 	PhysBody3D* Auxbod = App->physics->AddBody(Obstacles, 0);
-	Cube auxcube(0.1f, 9.5f, 1);
+	Cube auxcube(5, 9.5f, 1);
 	auxcube.SetPos(x + 5, y, z);
 	
 	
@@ -134,7 +134,7 @@ void ModuleSceneProps::CreateObstacle(float x, float y, float z, Color color) {
 	auxcube.color = Red;
 	Auxbod2->CreateSensor();
 	Auxbod2->collision_listeners.add(this);
-	App->physics->AddConstraintHinge(*Auxbod, *Auxbod2, { 0,0,0 }, { 0,8,0 }, { 0,0,1 }, { 1,0,0 }, true);
+	App->physics->AddConstraintHinge(*Auxbod, *Auxbod2, { 0,0,0 }, { 0,1,0 }, { 0,0,8 }, { 1,0,0 }, true);
 	
 	
 	Obstacle Adder(Obstacles, auxcube, Auxbod, Auxbod2);
