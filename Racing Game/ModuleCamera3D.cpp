@@ -40,23 +40,14 @@ bool ModuleCamera3D::CleanUp()
 // -----------------------------------------------------------------
 update_status ModuleCamera3D::Update(float dt)
 {
-	// Implement a debug camera with keys and mouse
-	// Now we can make this movememnt frame rate independant!
-
-
-
-	if (!free_camera) {
 
 		Position.x = App->player->car->vehicle->getChassisWorldTransform().getOrigin().getX() - 10 * App->player->car->vehicle->getForwardVector().getX();
 		Position.y = App->player->car->vehicle->getChassisWorldTransform().getOrigin().getY() + 5 * App->player->car->vehicle->getUpAxis();
 		Position.z = App->player->car->vehicle->getChassisWorldTransform().getOrigin().getZ() - 15 * App->player->car->vehicle->getForwardVector().getZ();
-
 		float player_x = App->player->car->vehicle->getChassisWorldTransform().getOrigin().getX() + 15 * App->player->car->vehicle->getForwardVector().getX();
 		float player_z = App->player->car->vehicle->getChassisWorldTransform().getOrigin().getZ() + 15 * App->player->car->vehicle->getForwardVector().getZ();
 
 		LookAt(vec3(player_x, 7, player_z));
-
-	}
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();

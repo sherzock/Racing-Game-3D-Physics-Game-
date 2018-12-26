@@ -151,6 +151,10 @@ update_status ModulePlayer::Update(float dt)
 	car->Brake(brake);
 	car->Render();
 
+	if (timer.ReadSec() > 25) {
+		RespawnCar();
+	}
+
 	char title[80];
 	sprintf_s(title, "%.1f Km/h    %.1f sec      Best Time %.1f sec", car->GetKmh(), timer.ReadSec(), best_time);
 	App->window->SetTitle(title);
@@ -165,7 +169,6 @@ void ModulePlayer::RespawnCar() {
 	car->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
 	car->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
 	timer.Start();
-	App->camera->free_camera = false;
 }
 
 

@@ -22,9 +22,9 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
-	btVector3 getPos() const;//Get axis of orientation of the player	
+	btVector3 getPos() const;
 
-	void PositionCar() const;//Car spawns to the initial pos
+	void PositionCar() const;
 	void RespawnCar();
 	void Crash();
 
